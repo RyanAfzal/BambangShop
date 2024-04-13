@@ -48,22 +48,22 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [✔️] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [✔️] Commit: `Create Subscriber model struct.`
+    -   [✔️] Commit: `Create Notification model struct.`
+    -   [✔️] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [✔️] Commit: `Implement add function in Subscriber repository.`
+    -   [✔️] Commit: `Implement list_all function in Subscriber repository.`
+    -   [✔️] Commit: `Implement delete function in Subscriber repository.`
+    -   [✔️] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [✔️] Commit: `Create Notification service struct skeleton.`
+    -   [✔️] Commit: `Implement subscribe function in Notification service.`
+    -   [✔️] Commit: `Implement subscribe function in Notification controller.`
+    -   [✔️] Commit: `Implement unsubscribe function in Notification service.`
+    -   [✔️] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [✔️] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -82,6 +82,12 @@ This is the place for you to write reflections:
 3. Untuk membuat program thread safe untuk list Subscribers (SUBSCRIBERS) dengan variabel static menggunakan DashMap dengan external library untuk thread safe HashMap adalah pilihan terbaik karena memiliki akses global ke struktur data yang sama dan dipastikan aman untuk concurrency dalam multithreaded environment. Sedangkan menggunakan Singleton Pattern (1 class hanya memiliki 1 instance) akan lebih tidak efektif dan mungkin belum perlu digunakan saat ini karena singleton pattern akan tricky untuk diimplementasikan karena adanya aturan Rust's ownership dan borrowing dan Singleton pattern memerlukan tambahan mekanisme sinkronisasi seperti mutex dan RwLock yang akan meningkatkan kompleksitas.
 
 #### Reflection Publisher-2
+1. Karena pada MVC original satu class Model memiliki banyak tanggung jawab seperti sebagai representasi data dari aplikasi, enkapsulasi penyimpanan data, dan untuk logika bisnis, di mana hal ini tidak sesuai dengan salah satu prinsip SOLID yaitu Single Responsibility Principle di mana setiap kelas harus memiliki 1 tanggung jawab sehingga service dan repository harus dipisahkan dari model, selain itu pemisahan ini juga sesuai dengan design principle untuk memisahkan part yang berbeda, memudahkan jika ada perubahan atau kesalahan, memudahkan untuk membuat testing, dan meningkatkan scalability. Setelah pemisahan model hanya memiliki tanggung jawab sebagai representasi data, service hanya untuk logika bisnis, dan repository hanya untuk operasi penyimpanan data.
+2. Jika menggunakan Model tanpa ada nya pemisahan concern service dan repository, model (Program, Subscriber, Notification) akan memiliki banyak tanggung jawab seperti yang sudah disebutkan pada nomor 1 sehingga akan melanggar prinsip Single Responsibility, meningkatkan kompleksitas, code coupling, meningkatkan kemungkinan code duplicate dan redundant, mengurangi reusability, mengurangi maintainability, dan code sulit dipahami. Contoh kasus yang dapat meningkatkan kompleksitas ketika model Notification perlu mengirimkan notifikasi ke user harus berinteraksi langsung dengan model Subscriber untuk akses informasi subscriber.
+3. Postman membantu untuk test program saya karena postman dapat memvalidasi respon API tanpa perlu mengakses server asli atau melibatkan pengembangan penuh dari sisi server dan tanpa membuat HTML nya, berikut fitur yang kemungkinan akan membantu saya dalam mengerjakan tugas kelompok:
+- **Sending Requests**, fitur ini memungkinkan kita dengan mudah mengirim permintaan HTTP ke endpoint API dengan parameter yang dapat disesuaikan seperti header, parameter query, dan request body.
+- **Automated Testing**: fitur ini memungkinkan kita membuat dan menjalankan rangkaian pengujian otomatis di Postman untuk memverifikasi perilaku endpoint API, termasuk pengujian untuk response status code, response body content, dan lainnya
+- **Environment Variables**: fitur ini memungkinkan untuk mendefinisikan dan menggunakan environment variable, yang membuat mudah untuk beralih antar environment yang berbeda (misalnya, development, staging, production) saat menguji API.
 
 #### Reflection Publisher-3
 
