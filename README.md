@@ -77,7 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Interface pada observer design pattern digunakan untuk mendefinisikan method-method atau services yang akan digunakan. Karena pada bambangshop case behavior dari observer masih belum terlalu bervariasi atau masih bisa dijadikan 1 interface subscriber, sehingga satu struktur model sudah cukup untuk observer dan behaviornya.
+2. Dengan menggunakan vec (list) sebenarnya sudah cukup untuk menyimpan id yang ingin dibuat unik pada program dan url pada subscriber, tetapi vec (list) tidak memiliki mekanisme untuk memastikan keunikan dari elemennya sehingga untuk scalability ketika subscriber bertamabah banyak lebih baik menggunakan DashMap karena DashMap dapat menjamin keunikan saat melakukan pencarian atau penambahan secara efisien.
+3. Untuk membuat program thread safe untuk list Subscribers (SUBSCRIBERS) dengan variabel static menggunakan DashMap dengan external library untuk thread safe HashMap adalah pilihan terbaik karena memiliki akses global ke struktur data yang sama dan dipastikan aman untuk concurrency dalam multithreaded environment. Sedangkan menggunakan Singleton Pattern (1 class hanya memiliki 1 instance) akan lebih tidak efektif dan mungkin belum perlu digunakan saat ini karena singleton pattern akan tricky untuk diimplementasikan karena adanya aturan Rust's ownership dan borrowing dan Singleton pattern memerlukan tambahan mekanisme sinkronisasi seperti mutex dan RwLock yang akan meningkatkan kompleksitas.
 
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
+
